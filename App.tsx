@@ -8,7 +8,7 @@ import Home from './screens/Home';
 import Auth from './screens/Auth';
 import AdminUsers from './screens/AdminUsers';
 import CreateUser from './screens/AdminUsers/CreateUser';
-import { getDBConnection } from './utils/db-service';
+import { getDBConnection, createTable } from './utils/db-service';
 
 
 const Stack = createNativeStackNavigator();
@@ -21,7 +21,7 @@ function HomeTabs() {
       <Tab.Screen name="AdminUsers" component={AdminUsers} options={{ headerShown: false }} />
     </Tab.Navigator>
   );
-}
+} 
 
 
 
@@ -31,36 +31,9 @@ function App(): React.JSX.Element {
   async function dbSetp(){
     try {
       const db = await getDBConnection();
-      const horarios = await getTodoItems(db,'horarios');
-      const rutas = await getTodoItems(db,'rutas');
-      const paraderosAndRutasQuery = await getTodoItems(db,'paraderosAndRutas');
+      const horarios = await createTable(db,'users');
 
-      if(horarios=== null){
-        await createTable(db, 'horarios');
-        await saveHorarios(db, horariosTwo)
-      }else{
-          await deleteTable(db, 'horarios')
-          await createTable(db, 'horarios');
-          await saveHorarios(db, horariosTwo)
-      }
-
-      if(rutas=== null){
-        await createTable(db, 'rutas');
-        await saveTodoItems(db, listRutas)
-      }else{
-        await deleteTable(db, 'rutas')
-        await createTable(db, 'rutas');
-        await saveTodoItems(db, listRutas)
-      }
-
-      if(paraderosAndRutasQuery=== null){
-        await createTable(db, 'paraderosAndRutas');
-        await saveTodoParaderosYRutas(db, paraderosAndRutas);
-      }else{
-        await deleteTable(db, 'paraderosAndRutas')
-        await createTable(db, 'paraderosAndRutas');
-        await saveTodoParaderosYRutas(db, paraderosAndRutas);
-      }
+      
         
         setLoading(false)
     

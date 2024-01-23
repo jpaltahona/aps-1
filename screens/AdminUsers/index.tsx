@@ -2,44 +2,35 @@ import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import { Table, Row,  } from 'react-native-reanimated-table';
 import { Button, Input} from "native-base";
-//import { openDatabase } from '../../database';
-
+import { getDBConnection, getTodoItems } from '../../utils/db-service';
 const AdminUsers = (props:any) => {
   const [tableData, setTableData] = useState({
     tableHead: ['#', 'NOMBRES Y APELLIDOS', 'MICROTERRITORIO', 'UBICACION', 'N. TERRITORIO'],
     widthArr: [40, 170, 150, 120, 120 ],
     tableTitle: ['Title', 'Title2', 'Title3', 'Title4'],
-    tableData: [
-      ['1', '2', '3', '4', '5'],
-      ['a', 'b', 'c', 'd', 'e'],
-      ['1', '2', '3', '456\n789', 'hello'],
-      ['a', 'b', 'c', 'd', '3']
-    ]
+    tableData: []
   })
-  const [items, setItems] = useState(null);
-  /*
+
   const initializateServices = async () => {
     try {
-      const db = await openDatabase();
+      const db = await getDBConnection();
       console.log('trayedno')
-      db.transaction( (tx) => {
-        console.log(tx)
-         tx.executeSql(
-          `'SELECT * FROM usuarios;`,[0],
-          (_, { rows: { _array } }) => {
-            console.log('entro')
-            setItems(_array)
-          }
-        );
-      });
+      const listItem = await getTodoItems(db, 'usuarios')
+      console.log('usarios ', listItem)
+      const arrayDeValores = listItem.map((objeto:any) => Object.values(objeto));
+      console.log('info ', arrayDeValores)
+      setTableData({
+        ...tableData, 
+        tableData: arrayDeValores
+      })
     } catch (error) {
       console.log('error ', error)
     }
   }
-  */
-  console.log('-: ',items)
+
+
   useEffect( () => {
-   // initializateServices()
+   initializateServices()
   }, [] )
 
   return (

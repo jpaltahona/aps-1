@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View, ScrollView } from 'react-native'
 import {  Button, FormControl, Input, Center, Stack, Select, CheckIcon, WarningOutlineIcon } from 'native-base';
+import { getDBConnection, saveItems } from '../../utils/db-service';
 //import {openDatabase} from '../../database';
 
 const CreateUser = () => {
@@ -24,9 +25,20 @@ const CreateUser = () => {
     return true;
 };
 
+const saveInfo = async () => {
+  try {
+    console.log(formData)
+    const db = await getDBConnection();
+    const rest =  await saveItems(db, formData);
+    console.log('res ', rest)
+  } catch (error) {
+    console.log('error -> ', error)
+  }
+ 
+}
 const onSubmit = async () => {
   validate() ;
-   console.log(formData)
+  saveInfo()
 };
 
   return (
@@ -68,7 +80,15 @@ const onSubmit = async () => {
           />
           {'name' in errors && <FormControl.ErrorMessage>Error</FormControl.ErrorMessage>}
         </FormControl>
-
+        <FormControl isRequired isInvalid={'edad' in errors} style={{ marginTop: 16 }}>
+          <FormControl.Label _text={{ bold: true }}>Edad</FormControl.Label>
+          <Input type="text" 
+            placeholder="edad"
+            onChangeText={value => setData({ ...formData, edad: value })}
+           
+          />
+          {'edad' in errors && <FormControl.ErrorMessage>Error</FormControl.ErrorMessage>}
+        </FormControl>
         <FormControl isRequired isInvalid={'email' in errors} style={{ marginTop: 16 }}>
           <FormControl.Label _text={{ bold: true }}>Correo electrónico</FormControl.Label>
           <Input type='text' 
