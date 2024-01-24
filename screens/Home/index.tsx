@@ -2,11 +2,13 @@ import { StyleSheet, View, ScrollView } from 'react-native'
 import React from 'react'
 import { StatusBar } from "native-base";
 import Tarjeta from '../../Components/Tarjeta.tsx';
-
+import HeaderApp from '../../Components/HeaderApp.tsx';
 
 const Home = () => {
   return (
-    <ScrollView style={styles.continer}>
+    <>
+      <HeaderApp />
+      <ScrollView style={styles.continer}>
       <StatusBar />
         <View style={styles.contentCard}>
           <Tarjeta />
@@ -14,6 +16,8 @@ const Home = () => {
         </View>
         <Tarjeta />
     </ScrollView>
+    </>
+    
   )
 }
 

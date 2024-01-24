@@ -33,10 +33,10 @@ export const createTable = async (db: SQLiteDatabase, type:string) => {
     }
 };
 
-export const getTodoItems = async (db: SQLiteDatabase, table: string): Promise<any> => {
+export const getTodoItems = async (db: SQLiteDatabase, query: string): Promise<any> => {
   try {
     const todoItems: any[] = [];
-    const results = await db.executeSql(`SELECT * FROM ${table}`);
+    const results = await db.executeSql(query);
     results.forEach(result => {
       for (let index = 0; index < result.rows.length; index++) {
         todoItems.push(result.rows.item(index))
@@ -49,6 +49,7 @@ export const getTodoItems = async (db: SQLiteDatabase, table: string): Promise<a
 };
 
 export const saveItems = async (db: SQLiteDatabase, i: any,) => {
+
   const insertQuery =`INSERT OR REPLACE INTO usuarios(doctype, docNum, name, email, dirr, phone, cargo, team, subRegion, municipio, microterritorio, Ubicacion, nTerritorio, divisiongeografica, zona, hospital, edad ) 
   values('${i.doctype}','${i.docNum}','${i.name}','${i.email}','${i.dirr}','${i.phone}','${i.cargo}','${i.team}','${i.subRegion}','${i.municipio}','${i.microterritorio}','${i.Ubicacion}','${i.nTerritorio}', '${i.divisiongeografica}', '${i.zona}','${i.hospital}', ${i.edad} );`;
 

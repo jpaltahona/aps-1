@@ -32,10 +32,7 @@ function App(): React.JSX.Element {
     try {
       const db = await getDBConnection();
       const horarios = await createTable(db,'users');
-
-      
-        
-        setLoading(false)
+   
     
     } catch (error) {
       console.log('error', error)

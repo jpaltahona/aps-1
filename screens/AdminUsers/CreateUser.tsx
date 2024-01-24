@@ -4,7 +4,7 @@ import {  Button, FormControl, Input, Center, Stack, Select, CheckIcon, WarningO
 import { getDBConnection, saveItems } from '../../utils/db-service';
 //import {openDatabase} from '../../database';
 
-const CreateUser = () => {
+const CreateUser = (props:any) => {
   const [formData, setData]:any = React.useState({});
   const [errors, setErrors] = React.useState({});
   const validate = () => {
@@ -31,6 +31,7 @@ const saveInfo = async () => {
     const db = await getDBConnection();
     const rest =  await saveItems(db, formData);
     console.log('res ', rest)
+    props.navigation.goBack()
   } catch (error) {
     console.log('error -> ', error)
   }
@@ -41,6 +42,7 @@ const onSubmit = async () => {
   saveInfo()
 };
 
+console.log('props ',props)
   return (
     <ScrollView style={styles.container}>
       <Text style={ styles.titleSection} >Datos creación de usuario</Text>
@@ -234,7 +236,7 @@ const onSubmit = async () => {
           <FormControl.Label _text={{ bold: true }}>Zona</FormControl.Label>
           <Input type='text' 
             placeholder="zona"
-            onChangeText={value => setData({ ...formData, hopital: value })}
+            onChangeText={value => setData({ ...formData, zona: value })}
            
           />
           {'zona' in errors && <FormControl.ErrorMessage>Error</FormControl.ErrorMessage>}
