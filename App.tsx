@@ -9,6 +9,8 @@ import Auth from './screens/Auth';
 import AdminUsers from './screens/AdminUsers';
 import CreateUser from './screens/AdminUsers/CreateUser';
 import { getDBConnection, createTable } from './utils/db-service';
+import RedPrestadora from './screens/RedPrestadora';
+import CreateRedPrestadora from './screens/RedPrestadora/CreateRedPrestadora';
 
 
 const Stack = createNativeStackNavigator();
@@ -19,6 +21,8 @@ function HomeTabs() {
     <Tab.Navigator>
       <Tab.Screen name="HomeApp" component={Home} options={{ headerShown: false }} />
       <Tab.Screen name="AdminUsers" component={AdminUsers} options={{ headerShown: false }} />
+      <Tab.Screen name="RedPrestadora" component={RedPrestadora} options={{ headerShown: false }} />
+     
     </Tab.Navigator>
   );
 } 
@@ -31,8 +35,8 @@ function App(): React.JSX.Element {
   async function dbSetp(){
     try {
       const db = await getDBConnection();
-      const horarios = await createTable(db,'users');
-   
+      await createTable(db,'users');
+      await createTable(db,'redPrestadora');
     
     } catch (error) {
       console.log('error', error)
@@ -50,6 +54,8 @@ function App(): React.JSX.Element {
           <Stack.Screen name="Auth" component={Auth} options={{ headerShown: false }} />
           <Stack.Screen name="Home" component={HomeTabs} options={{ headerShown: false }} />
           <Stack.Screen name="CreateUser" component={CreateUser} options={{ headerShown: true, }} />
+          <Stack.Screen name="CreateRedPrestadora" component={CreateRedPrestadora} options={{ headerShown: true, }} />
+          
           </Stack.Navigator> 
       </NavigationContainer>
     </NativeBaseProvider>
