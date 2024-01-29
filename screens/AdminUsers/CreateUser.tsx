@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, View, ScrollView } from 'react-native'
 import {  Button, FormControl, Input, Center, Stack, Select, CheckIcon, WarningOutlineIcon } from 'native-base';
 import { getDBConnection, saveItems } from '../../utils/db-service';
+import { usuario } from '../../utils/valores';
 //import {openDatabase} from '../../database';
 
 const CreateUser = (props:any) => {
@@ -56,9 +57,10 @@ console.log('props ',props)
             }}
             onValueChange={ value =>setData({ ...formData, doctype: value }) }
             >
-              <Select.Item label="C.C" value="CC" />
-              <Select.Item label="Tarjeta de identidad" value="Ti" />
-              <Select.Item label="Pasaporte" value="PS" />
+              { usuario.tipoDoc.map( (i:any) => {
+                return   <Select.Item label={i.label} value={i.value} />
+              } ) }
+            
             </Select>
             {'doctype' in errors && <FormControl.ErrorMessage>Error</FormControl.ErrorMessage> }
         </FormControl>
@@ -68,7 +70,6 @@ console.log('props ',props)
           <Input 
             placeholder="11111" 
             onChangeText={value => setData({ ...formData, docNum: value })}
-           
           />
           {'docNum' in errors && <FormControl.ErrorMessage>Error</FormControl.ErrorMessage> }
         </FormControl>
@@ -78,7 +79,6 @@ console.log('props ',props)
           <Input type="text" 
             placeholder="Nombre"
             onChangeText={value => setData({ ...formData, name: value })}
-           
           />
           {'name' in errors && <FormControl.ErrorMessage>Error</FormControl.ErrorMessage>}
         </FormControl>
@@ -87,7 +87,6 @@ console.log('props ',props)
           <Input type="text" 
             placeholder="edad"
             onChangeText={value => setData({ ...formData, edad: value })}
-           
           />
           {'edad' in errors && <FormControl.ErrorMessage>Error</FormControl.ErrorMessage>}
         </FormControl>
@@ -96,7 +95,6 @@ console.log('props ',props)
           <Input type='text' 
             placeholder="email"
             onChangeText={value => setData({ ...formData, email: value })}
-           
           />
           {'email' in errors && <FormControl.ErrorMessage>Error</FormControl.ErrorMessage>}
         </FormControl>
@@ -106,7 +104,6 @@ console.log('props ',props)
           <Input type='text' 
             placeholder="Dirrecion"
             onChangeText={value => setData({ ...formData, dirr: value })}
-           
           />
           {'dirr' in errors && <FormControl.ErrorMessage>Error</FormControl.ErrorMessage>}
         </FormControl>
@@ -131,7 +128,10 @@ console.log('props ',props)
             }}
             onValueChange={ value =>setData({ ...formData, cargo: value }) }
             >
-              <Select.Item label="Aux. Enfermeria" value="Auxenfermeria" />
+              { usuario.cargo.map( (i:any) => {
+                return   <Select.Item label={i.label} value={i.value} />
+              } ) }
+             
             </Select>
             {'cargo' in errors && <FormControl.ErrorMessage>Error</FormControl.ErrorMessage> }
         </FormControl>
@@ -159,7 +159,9 @@ console.log('props ',props)
             }}
             onValueChange={ value =>setData({ ...formData, subRegion: value }) }
             >
-              <Select.Item label="Sub Region" value="subRegion" />
+              { usuario.subregion.map( (i:any) => {
+                return  <Select.Item label={i.label} value={i.value} />
+              } ) }
             </Select>
             {'subRegion' in errors && <FormControl.ErrorMessage>Error</FormControl.ErrorMessage> }
         </FormControl>
@@ -187,7 +189,10 @@ console.log('props ',props)
             }}
             onValueChange={ value =>setData({ ...formData, microterritorio: value }) }
             >
-              <Select.Item label="Microterritorio" value="microterritorio" />
+              { usuario.microterritorios.map( (i:any) => {
+                return  <Select.Item label={i.label} value={i.value} />
+              } ) }
+             
             </Select>
             {'microterritorio' in errors && <FormControl.ErrorMessage>Error</FormControl.ErrorMessage> }
         </FormControl>
@@ -211,7 +216,9 @@ console.log('props ',props)
             }}
             onValueChange={ value =>setData({ ...formData, nTerritorio: value }) }
             >
-              <Select.Item label="1Rural" value="1Rural" />
+               { usuario.numeroTerritorio.map( (i:any) => {
+                return  <Select.Item label={i.label} value={i.value} />
+              } ) }
             </Select>
             {'nTerritorio' in errors && <FormControl.ErrorMessage>Error</FormControl.ErrorMessage> }
         </FormControl>
@@ -227,7 +234,10 @@ console.log('props ',props)
             }}
             onValueChange={ value =>setData({ ...formData, divisiongeografica: value }) }
             >
-              <Select.Item label="Centro Poblado" value="centroPoblado" />
+              { usuario.divisionGeografica.map( (i:any) => {
+                return  <Select.Item label={i.label} value={i.value} />
+              } ) }
+              
             </Select>
             {'divisiongeografica' in errors && <FormControl.ErrorMessage>Error</FormControl.ErrorMessage> }
         </FormControl>
