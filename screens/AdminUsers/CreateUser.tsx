@@ -8,17 +8,107 @@ import { usuario } from '../../utils/valores';
 const CreateUser = (props:any) => {
   const [formData, setData]:any = React.useState({});
   const [errors, setErrors] = React.useState({});
-  const validate = () => {
+  const validate:any = ():any => {
     if (formData.name === undefined) {
       setErrors({ 
         ...errors,
         name: 'Name is required'
       });
       return false;
-    } else if (formData.pass === undefined) {
+    }else if (formData.doctype === undefined) {
+      setErrors({ 
+        ...errors,
+        doctype: 'doctype is required'
+      });
+      return false;
+    }else if (formData.docNum === undefined) {
+      setErrors({ 
+        ...errors,
+        docNum: 'docNum is required'
+      });
+      return false;
+    }else if (formData.edad === undefined) {
+      setErrors({ 
+        ...errors,
+        edad: 'edad is required'
+      });
+      return false;
+    }else if (formData.email === undefined) {
+      setErrors({ 
+        ...errors,
+        email: 'email is required'
+      });
+      return false;
+    }else if (formData.dirr === undefined) {
       setErrors({ 
         ...errors,
         pass: 'pass is required'
+      });
+      return false;
+    }else if (formData.phone === undefined) {
+      setErrors({ 
+        ...errors,
+        phone: 'phone is required'
+      });
+      return false;
+    }else if (formData.cargo === undefined) {
+      setErrors({ 
+        ...errors,
+        cargo: 'cargo is required'
+      });
+      return false;
+    }else if (formData.team === undefined) {
+      setErrors({ 
+        ...errors,
+        team: 'team is required'
+      });
+      return false;
+    }else if (formData.subRegion === undefined) {
+      setErrors({ 
+        ...errors,
+        subRegion: 'subRegion is required'
+      });
+      return false;
+    }else if (formData.municipio === undefined) {
+      setErrors({ 
+        ...errors,
+        municipio: 'municipio is required'
+      });
+      return false;
+    }else if (formData.microterritorio === undefined) {
+      setErrors({ 
+        ...errors,
+        microterritorio: 'microterritorio is required'
+      });
+      return false;
+    }else if (formData.Ubicacion === undefined) {
+      setErrors({ 
+        ...errors,
+        Ubicacion: 'Ubicacion is required'
+      });
+      return false;
+    }else if (formData.nTerritorio === undefined) {
+      setErrors({ 
+        ...errors,
+        nTerritorio: 'nTerritorio is required'
+      });
+      return false;
+    }else if (formData.divisiongeografica === undefined) {
+      setErrors({ 
+        ...errors,
+        divisiongeografica: 'divisiongeografica is required'
+      });
+      return false;
+    }else if (formData.zona === undefined) {
+      setErrors({ 
+        ...errors,
+        zona: 'zona is required'
+      });
+      return false;
+    }else if (formData.hospital === undefined) {
+      setErrors({ 
+        ...errors,
+        hospital: 'hospital is required'
       });
       return false;
     }
@@ -39,8 +129,9 @@ const saveInfo = async () => {
  
 }
 const onSubmit = async () => {
-  validate() ;
-  saveInfo()
+  let validateSesion = validate() ;
+  if(validate === true ) return saveInfo()
+ 
 };
 
 console.log('props ',props)
@@ -64,7 +155,6 @@ console.log('props ',props)
             </Select>
             {'doctype' in errors && <FormControl.ErrorMessage>Error</FormControl.ErrorMessage> }
         </FormControl>
-
         <FormControl isRequired isInvalid={'docNum' in errors}>
           <FormControl.Label _text={{ bold: true }}>N° de documento</FormControl.Label>
           <Input 
@@ -73,7 +163,6 @@ console.log('props ',props)
           />
           {'docNum' in errors && <FormControl.ErrorMessage>Error</FormControl.ErrorMessage> }
         </FormControl>
-
         <FormControl isRequired isInvalid={'name' in errors} style={{ marginTop: 16 }}>
           <FormControl.Label _text={{ bold: true }}>Nombres y Apellidos</FormControl.Label>
           <Input type="text" 
@@ -98,7 +187,6 @@ console.log('props ',props)
           />
           {'email' in errors && <FormControl.ErrorMessage>Error</FormControl.ErrorMessage>}
         </FormControl>
-
         <FormControl isRequired isInvalid={'dirr' in errors} style={{ marginTop: 16 }}>
           <FormControl.Label _text={{ bold: true }}>Dirección de residencia</FormControl.Label>
           <Input type='text' 
@@ -107,9 +195,8 @@ console.log('props ',props)
           />
           {'dirr' in errors && <FormControl.ErrorMessage>Error</FormControl.ErrorMessage>}
         </FormControl>
-
         <FormControl isRequired isInvalid={'phone' in errors} style={{ marginTop: 16 }}>
-          <FormControl.Label _text={{ bold: true }}>celuar</FormControl.Label>
+          <FormControl.Label _text={{ bold: true }}>Celular</FormControl.Label>
           <Input type='text' 
             placeholder="celular"
             onChangeText={value => setData({ ...formData, phone: value })}
@@ -117,7 +204,6 @@ console.log('props ',props)
           />
           {'phone' in errors && <FormControl.ErrorMessage>Error</FormControl.ErrorMessage>}
         </FormControl>
-
         <FormControl isRequired isInvalid={'cargo' in errors}>
             <FormControl.Label  _text={{ bold: true }}>Cargo</FormControl.Label>
             <Select accessibilityLabel="Tipo de documento" placeholder="Seleccione" 
@@ -135,7 +221,6 @@ console.log('props ',props)
             </Select>
             {'cargo' in errors && <FormControl.ErrorMessage>Error</FormControl.ErrorMessage> }
         </FormControl>
-
         <FormControl isRequired isInvalid={'team' in errors}>
             <FormControl.Label  _text={{ bold: true }}>Equipo de trabajo</FormControl.Label>
             <Select accessibilityLabel="Tipo de documento" placeholder="Seleccione" 
@@ -149,7 +234,6 @@ console.log('props ',props)
             </Select>
             {'team' in errors && <FormControl.ErrorMessage>Error</FormControl.ErrorMessage> }
         </FormControl>
-
         <FormControl isRequired isInvalid={'subRegion' in errors}>
             <FormControl.Label  _text={{ bold: true }}>Subregion</FormControl.Label>
             <Select accessibilityLabel="subRegion" placeholder="Seleccione" 
@@ -165,7 +249,6 @@ console.log('props ',props)
             </Select>
             {'subRegion' in errors && <FormControl.ErrorMessage>Error</FormControl.ErrorMessage> }
         </FormControl>
-
         <FormControl isRequired isInvalid={'municipio' in errors}>
             <FormControl.Label  _text={{ bold: true }}>Municipio</FormControl.Label>
             <Select accessibilityLabel="municipio" placeholder="Seleccione" 
@@ -179,7 +262,6 @@ console.log('props ',props)
             </Select>
             {'municipio' in errors && <FormControl.ErrorMessage>Error</FormControl.ErrorMessage> }
         </FormControl>
-
         <FormControl isRequired isInvalid={'microterritorio' in errors}>
             <FormControl.Label  _text={{ bold: true }}>Microterritorio</FormControl.Label>
             <Select accessibilityLabel="microterritorio" placeholder="Seleccione" 
@@ -196,7 +278,6 @@ console.log('props ',props)
             </Select>
             {'microterritorio' in errors && <FormControl.ErrorMessage>Error</FormControl.ErrorMessage> }
         </FormControl>
-
         <FormControl isRequired isInvalid={'Ubicacion' in errors} style={{ marginTop: 16 }}>
           <FormControl.Label _text={{ bold: true }}>Ubicacion</FormControl.Label>
           <Input type='text' 
@@ -206,7 +287,6 @@ console.log('props ',props)
           />
           {'Ubicacion' in errors && <FormControl.ErrorMessage>Error</FormControl.ErrorMessage>}
         </FormControl>
-
         <FormControl isRequired isInvalid={'nTerritorio' in errors}>
             <FormControl.Label  _text={{ bold: true }}>N. territorio</FormControl.Label>
             <Select accessibilityLabel="nTerritorio" placeholder="Seleccione" 
@@ -222,7 +302,6 @@ console.log('props ',props)
             </Select>
             {'nTerritorio' in errors && <FormControl.ErrorMessage>Error</FormControl.ErrorMessage> }
         </FormControl>
-
         <FormControl isRequired isInvalid={'divisiongeografica' in errors}>
             <FormControl.Label  _text={{ bold: true }}>Division geografica</FormControl.Label>
             <Select accessibilityLabel="Division geografica" placeholder="Seleccione" 
@@ -241,7 +320,6 @@ console.log('props ',props)
             </Select>
             {'divisiongeografica' in errors && <FormControl.ErrorMessage>Error</FormControl.ErrorMessage> }
         </FormControl>
-
         <FormControl isRequired isInvalid={'zona' in errors} style={{ marginTop: 16 }}>
           <FormControl.Label _text={{ bold: true }}>Zona</FormControl.Label>
           <Input type='text' 
@@ -251,7 +329,6 @@ console.log('props ',props)
           />
           {'zona' in errors && <FormControl.ErrorMessage>Error</FormControl.ErrorMessage>}
         </FormControl>
-
         <FormControl isRequired isInvalid={'hospital' in errors} style={{ marginTop: 16 }}>
           <FormControl.Label _text={{ bold: true }}>hospital</FormControl.Label>
           <Input type='text' 
@@ -261,7 +338,6 @@ console.log('props ',props)
           />
           {'hospital' in errors && <FormControl.ErrorMessage>Error</FormControl.ErrorMessage>}
         </FormControl>
-
         <Button onPress={onSubmit} mt="5" padding={4} backgroundColor="#FF6708" borderRadius={10} marginBottom={10}>
             Crear usuario
         </Button>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View, ScrollView } from 'react-native'
-import {  Button, FormControl, Input, Center, Stack, Select, CheckIcon, WarningOutlineIcon } from 'native-base';
+import {  Button, FormControl, Input, Stack, Select, CheckIcon, } from 'native-base';
 import { getDBConnection, saveRed } from '../../utils/db-service';
 //import {openDatabase} from '../../database';
 

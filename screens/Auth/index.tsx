@@ -1,6 +1,6 @@
 import React from 'react'
 import { Image, Divider  } from "native-base";
-import {View, Text, SafeAreaView, StyleSheet} from 'react-native';
+import {View, Text, SafeAreaView, StyleSheet, ScrollView} from 'react-native';
 import {  Button, FormControl, Input, NativeBaseProvider, Center, Stack } from 'native-base';
 //import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
@@ -31,11 +31,11 @@ const Auth = ({navigation}:any) => {
     
     
     return (
-      <View>
+      <ScrollView >
         <Image source={{ uri: "https://wallpaperaccess.com/full/317501.jpg"}} alt="Alternate Text"  
           style={{ width: '100%', height: 250 }}
         />
-        <View style={styles.containerCard}>
+        <Stack style={styles.containerCard} >
             <Text style={{ color: '#757575', fontSize: 16 , fontWeight: '400', marginBottom: 16, fontStyle: 'italic' }}>Sistema integral de información de Atención Primaria</Text>
             <Divider />
             <View style={{ marginVertical: 16 }}>
@@ -71,8 +71,8 @@ const Auth = ({navigation}:any) => {
                   Iniciar sesión
               </Button>
             </Stack>
-        </View>
-      </View>
+        </Stack>
+      </ScrollView>
   )
 }
 
