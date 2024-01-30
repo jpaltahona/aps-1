@@ -4,6 +4,7 @@ import {View, Text, SafeAreaView, StyleSheet, ScrollView} from 'react-native';
 import {  Button, FormControl, Input, NativeBaseProvider, Center, Stack } from 'native-base';
 //import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
+
 const Auth = ({navigation}:any) => {
     const [formData, setData]:any = React.useState({});
     const [errors, setErrors] = React.useState({});

@@ -50,7 +50,7 @@ const AdminUsers = (props:any) => {
 
   useEffect( () => {
    initializateServices()
-  }, [] )
+  }, [props] )
 
   console.log(tableData)
   return (

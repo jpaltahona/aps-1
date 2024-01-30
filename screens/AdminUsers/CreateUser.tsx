@@ -122,7 +122,7 @@ const saveInfo = async () => {
     const db = await getDBConnection();
     const rest =  await saveItems(db, formData);
     console.log('res ', rest)
-    props.navigation.goBack()
+    props.navigation.navigate("AdminUsers",{ update:true })
   } catch (error) {
     console.log('error -> ', error)
   }
@@ -130,7 +130,7 @@ const saveInfo = async () => {
 }
 const onSubmit = async () => {
   let validateSesion = validate() ;
-  if(validate === true ) return saveInfo()
+  if(validateSesion === true ) return saveInfo()
  
 };
 
@@ -175,6 +175,7 @@ console.log('props ',props)
           <FormControl.Label _text={{ bold: true }}>Edad</FormControl.Label>
           <Input type="text" 
             placeholder="edad"
+            keyboardType="numeric"
             onChangeText={value => setData({ ...formData, edad: value })}
           />
           {'edad' in errors && <FormControl.ErrorMessage>Error</FormControl.ErrorMessage>}
@@ -199,6 +200,7 @@ console.log('props ',props)
           <FormControl.Label _text={{ bold: true }}>Celular</FormControl.Label>
           <Input type='text' 
             placeholder="celular"
+            keyboardType="numeric"
             onChangeText={value => setData({ ...formData, phone: value })}
            
           />
