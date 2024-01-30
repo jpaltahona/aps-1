@@ -11,17 +11,80 @@ const CreateRedPrestadora = (props:any) => {
     if (formData.name === undefined) {
       setErrors({ 
         ...errors,
-        name: 'Name is required'
+        name: 'name is required'
       });
       return false;
-    } else if (formData.pass === undefined) {
+    } else if (formData.doctype === undefined) {
       setErrors({ 
         ...errors,
-        pass: 'pass is required'
+        pass: 'doctype is required'
       });
+      
+      return false;
+    }else if (formData.docNum === undefined) {
+      setErrors({ 
+        ...errors,
+        pass: 'docNum is required'
+      });
+      
+      return false;
+    }else if (formData.divisiongeografica === undefined) {
+      setErrors({ 
+        ...errors,
+        pass: 'divisiongeografica is required'
+      });
+      
+      return false;
+    }else if (formData.dirr === undefined) {
+      setErrors({ 
+        ...errors,
+        pass: 'dirr is required'
+      });
+      
+      return false;
+    }else if (formData.rol === undefined) {
+      setErrors({ 
+        ...errors,
+        pass: 'rol is required'
+      });
+      
+      return false;
+    }else if (formData.nameDos === undefined) {
+      setErrors({ 
+        ...errors,
+        pass: 'nameDos is required'
+      });
+      
+      return false;
+    }else if (formData.doctypeDos === undefined) {
+      setErrors({ 
+        ...errors,
+        pass: 'doctypeDos is required'
+      });
+      
+      return false;
+    }else if (formData.docNumDos === undefined) {
+      setErrors({ 
+        ...errors,
+        pass: 'docNumDos is required'
+      });
+      
+      return false;
+    }else if (formData.genero === undefined) {
+      setErrors({ 
+        ...errors,
+        pass: 'genero is required'
+      });
+      
+      return false;
+    }else if (formData.phone === undefined) {
+      setErrors({ 
+        ...errors,
+        pass: 'phone is required'
+      });
+      
       return false;
     }
-
     return true;
 };
 
@@ -30,16 +93,15 @@ const saveInfo = async () => {
     console.log(formData)
     const db = await getDBConnection();
     const rest =  await saveRed(db, formData);
-    console.log('res ', rest)
-    props.navigation.goBack()
+    props.navigation.navigate("RedPrestadora",{ update:true })
+  
   } catch (error) {
     console.log('error -> ', error)
   }
- 
 }
 const onSubmit = async () => {
-  validate() ;
-  saveInfo()
+  let valid =  validate() ;
+  if(valid === true) saveInfo()
 };
 
 console.log('props ',props)
@@ -184,6 +246,7 @@ console.log('props ',props)
           <FormControl.Label _text={{ bold: true }}>celuar</FormControl.Label>
           <Input type='text' 
             placeholder="celular"
+            keyboardType="numeric"
             onChangeText={value => setData({ ...formData, phone: value })}
            
           />

@@ -36,7 +36,7 @@ const RedPrestadora = (props:any) => {
 
   useEffect( () => {
    initializateServices()
-  }, [] )
+  }, [props] )
 
   return (
     <>
